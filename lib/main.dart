@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:multi_vendor_mobile/vendor/views/auth/vendor_auth_screen.dart';
 
 void main() async {
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: VendorAuthScreen(),
+      builder: EasyLoading.init(),
     );
   }
 }

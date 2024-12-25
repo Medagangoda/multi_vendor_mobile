@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:multi_vendor_mobile/vendor/controllers/vendor_register_controller.dart';
 
@@ -53,11 +54,24 @@ class _VendorRegistrationScreenState extends State<VendorRegistrationScreen> {
   ];
 
   _saveVendorDetail() async {
+    EasyLoading.show(status: 'Please Wait');
     if (_formkey.currentState!.validate()) {
       await _vendorController.registerVendor(bussinessName, email, phoneNumber,
-          countryValue, stateValue, cityValue, _taxStatus!, taxNumber, _image);
+          countryValue, stateValue, cityValue, _taxStatus!, taxNumber, _image).whenComplete((){
+            EasyLoading.dismiss();
+
+            setState(() {
+              _formkey.currentState!.reset();
+
+              _image = null;
+            });
+          });
     } else {
       print('bad');
+
+      EasyLoading.dismiss();
+
+
     }
   }
 

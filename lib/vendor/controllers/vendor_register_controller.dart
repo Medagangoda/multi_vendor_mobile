@@ -71,7 +71,7 @@ class VendorController {
         "countryValue" : countryValue,
         "statesValue" : stateValue,
         "cityValue" :cityValue,
-        "taxRegisted" : taxRegistered,
+        "taxRegistered" : taxRegistered,
         "taxNumber" : taxNumber,
         "storeImage": storeimage,
         'approved': false,

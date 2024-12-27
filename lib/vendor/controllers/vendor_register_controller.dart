@@ -12,9 +12,8 @@ class VendorController {
   //Store image in firebase
 
   _uploadVendorImageToStorage(Uint8List? image) async {
-
     Reference ref =
-        _storage.ref().child('storeimages').child(_auth.currentUser!.uid);
+        _storage.ref().child('storeimage').child(_auth.currentUser!.uid);
 
     UploadTask uploadTask = ref.putData(image!);
 
@@ -57,27 +56,34 @@ class VendorController {
     String res = 'some error occured';
 
     try {
-      
+      if (bussinessName.isNotEmpty &&
+          email.isNotEmpty &&
+          phoneNumber.isNotEmpty &&
+          countryValue.isNotEmpty &&
+          stateValue.isNotEmpty &&
+          cityValue.isNotEmpty &&
+          taxRegistered.isNotEmpty &&
+          taxNumber.isNotEmpty &&
+          image != null) {
         //save data cloud firestore
 
-      String storeimage = await _uploadVendorImageToStorage(image);
+        String storeimage = await _uploadVendorImageToStorage(image);
 
-      await _firestore .collection('vendors')
-      .doc(_auth.currentUser!.uid)
-      .set({
-        'bussinessName' : bussinessName,
-        'email' : email,
-        'phoneNumber' : phoneNumber,
-        "countryValue" : countryValue,
-        "statesValue" : stateValue,
-        "cityValue" :cityValue,
-        "taxRegistered" : taxRegistered,
-        "taxNumber" : taxNumber,
-        "storeImage": storeimage,
-        'approved': false,
-      });
-
-      
+        await _firestore.collection('vendors').doc(_auth.currentUser!.uid).set({
+          'bussinessName': bussinessName,
+          'email': email,
+          'phoneNumber': phoneNumber,
+          "countryValue": countryValue,
+          "stateValue": stateValue,
+          "cityValue": cityValue,
+          "taxRegistered": taxRegistered,
+          "taxNumber": taxNumber,
+          "storeImage": storeimage,
+          'approved': false,
+        });
+      } else {
+        res = 'please fields must not be empty';
+      }
       ;
     } catch (e) {
       res = e.toString();

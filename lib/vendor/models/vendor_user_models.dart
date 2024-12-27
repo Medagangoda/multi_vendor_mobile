@@ -1,66 +1,55 @@
-class VendorUserModels {
+class VendorUserModel {
   final bool? approved;
-
   final String? bussinessName;
-
   final String? cityValue;
-
   final String? countryValue;
-
   final String? email;
-
   final String? phoneNumber;
-
   final String? stateValue;
-
   final String? storeImage;
-
   final String? taxNumber;
-
   final String? taxRegistered;
 
-  VendorUserModels( {
-      required this.approved,
-      required this.bussinessName,
-      required this.cityValue,
-      required this.countryValue,
-      required this.email,
-      required this.phoneNumber,
-      required this.stateValue,
-      required this.storeImage,
-      required this.taxNumber,
-      required this.taxRegistered } );
+  VendorUserModel({
+    this.approved,
+    this.bussinessName,
+    this.cityValue,
+    this.countryValue,
+    this.email,
+    this.phoneNumber,
+    this.stateValue,
+    this.storeImage,
+    this.taxNumber,
+    this.taxRegistered,
+  });
 
-      VendorUserModels.fromJson(Map<String, Object> json):
+  factory VendorUserModel.fromJson(Map<String, dynamic> json) {
+    return VendorUserModel(
+      approved: json['approved'] as bool? ?? false,
+      bussinessName: json['bussinessName'] as String? ?? '',
+      cityValue: json['cityValue'] as String? ?? '',
+      countryValue: json['countryValue'] as String? ?? '',
+      email: json['email'] as String? ?? '',
+      phoneNumber: json['phoneNumber'] as String? ?? '',
+      stateValue: json['stateValue'] as String? ?? '',
+      storeImage: json['storeImage'] as String? ?? '',
+      taxNumber: json['taxNumber'] as String? ?? '',
+      taxRegistered: json['taxRegistered'] as String? ?? '',
+    );
+  }
 
-      this(
-        approved: json['approved']! as bool,
-
-        bussinessName: json['bussinessName']! as String,
-        cityValue: json['cityValue']! as String,
-        countryValue: json['countryValue']! as String,
-        email: json['email']! as String,
-        phoneNumber: json['phoneNumber']! as String,
-        stateValue: json['stateValue']! as String,
-        storeImage: json['storeImage']! as String,
-        taxNumber: json['taxNumber']! as String,
-        taxRegistered: json['taxRegistered']! as String,
-
-      );
-
-      Map<String, Object?> toJson() {
-        return{
-          'approved' : approved,
-          'bussinessName' : bussinessName,
-          'cityValue' : cityValue,
-          'countryValue' : countryValue,
-          'email' : email,
-          'phoneNumber' : phoneNumber,
-          'stateValue' : stateValue,
-          'storeImage' : storeImage,
-          'taxNumber' : taxNumber,
-          'taxRegistered' : taxRegistered,
-
-        };
-      }
+  Map<String, dynamic> toJson() {
+    return {
+      'approved': approved,
+      'bussinessName': bussinessName,
+      'cityValue': cityValue,
+      'countryValue': countryValue,
+      'email': email,
+      'phoneNumber': phoneNumber,
+      'stateValue': stateValue,
+      'storeImage': storeImage,
+      'taxNumber': taxNumber,
+      'taxRegistered': taxRegistered,
+    };
+  }
 }

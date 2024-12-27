@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:multi_vendor_mobile/vendor/views/auth/vendor_registration_screen.dart';
 import 'package:multi_vendor_mobile/vendor/views/screens/landing_screen.dart';
 
+
 class VendorAuthScreen extends StatefulWidget {
   const VendorAuthScreen({super.key});
 
@@ -18,6 +19,7 @@ class _VendorAuthScreenState extends State<VendorAuthScreen> {
       stream: FirebaseAuth.instance.authStateChanges(),
       initialData: FirebaseAuth.instance.currentUser,
       builder: (context, snapshot) {
+        
         if(!snapshot.hasData) {
           return SignInScreen(
             providers: [
